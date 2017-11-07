@@ -277,9 +277,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
     
     public void Bloqueo(){        
-        //cmbRes.setEnabled(false);
-        //btnContinuar.setEnabled(false);
-        //jButton4.setVisible(false);
+        cmbRes.setEnabled(false);
+        btnContinuar.setEnabled(false);
+        jButton4.setVisible(false);
     }
     
     public void Inicio(){        
