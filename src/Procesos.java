@@ -98,6 +98,28 @@ public class Procesos {
         
     }
     
+    public int getRestaurante(JComboBox restaurantesCbx){
+        int opt = 0;
+        
+        switch((String) restaurantesCbx.getSelectedItem()){
+            case "Go Green":
+                opt = 1;
+                break;
+            case "Gitanne":
+                opt = 2;
+                break;
+            case "Bagel Bros":
+                opt = 3;
+                break;
+            case "Snackers":
+                opt = 4;
+                break;
+        }
+        
+        return opt;
+    }
+    
+    
     public void showOpts(int x, JComboBox comidaCbx, JComboBox bebidaCbx, JComboBox chipsCbx){
         
         switch (x){

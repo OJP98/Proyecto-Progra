@@ -34,7 +34,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         registrarBtn = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbRes = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -88,7 +88,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel4.setText("Login");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Go Green", "Gitanne", "Bagel Bros", "Snackers" }));
+        cmbRes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Go Green", "Gitanne", "Bagel Bros", "Snackers" }));
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel5.setText("Disponibilidad:");
@@ -133,7 +133,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel7)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbRes, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
@@ -168,7 +168,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         .addComponent(jButton4)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(34, 34, 34)
@@ -234,8 +234,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
-        CrearOrden_GUI ord = new CrearOrden_GUI();
+        int opt = procesos.getRestaurante(cmbRes);
+        CrearOrden_GUI ord = new CrearOrden_GUI(opt);
         
+        ord.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     /**
@@ -274,22 +277,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
     
     public void Bloqueo(){        
-        jComboBox1.setEnabled(false);
-        btnContinuar.setEnabled(false);
-        jButton4.setVisible(false);
+        //cmbRes.setEnabled(false);
+        //btnContinuar.setEnabled(false);
+        //jButton4.setVisible(false);
     }
     
     public void Inicio(){        
-        jComboBox1.setEnabled(true);
+        cmbRes.setEnabled(true);
         btnContinuar.setEnabled(true);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adminBtn;
     private javax.swing.JButton btnContinuar;
+    private javax.swing.JComboBox<String> cmbRes;
     private javax.swing.JButton ingresarBtn;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

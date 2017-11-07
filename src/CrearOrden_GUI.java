@@ -9,13 +9,20 @@
  * @author Usuario
  */
 public class CrearOrden_GUI extends javax.swing.JFrame {
-    int opcion=0;
+    Procesos procesos = new Procesos();
     /**
      * Creates new form OrdenGrande
      */
     public CrearOrden_GUI() {
         initComponents();
+       // procesos.showOpts(opcion, cmbComida, cmbBebida, cmbChips);
     }
+    
+    public CrearOrden_GUI(int opcion) {
+        initComponents();
+        procesos.showOpts(opcion, cmbComida, cmbBebida, cmbChips);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
