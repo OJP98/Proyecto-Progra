@@ -104,7 +104,8 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
+                              <Component id="jAtras" min="-2" pref="103" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                               <Component id="jButton3" min="-2" pref="136" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -269,7 +270,10 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSpinner1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" pref="41" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jButton3" pref="41" max="32767" attributes="0"/>
+                  <Component id="jAtras" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -589,6 +593,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Crear Orden:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jAtras">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Regresar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jAtrasActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

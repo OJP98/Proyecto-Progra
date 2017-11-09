@@ -39,6 +39,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnContinuar = new javax.swing.JButton();
+        jInd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,10 +100,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel7.setText("Crear Orden:");
 
-        btnContinuar.setText("Continuar");
+        btnContinuar.setText("En Masa");
         btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnContinuarActionPerformed(evt);
+            }
+        });
+
+        jInd.setText("Individual");
+        jInd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jIndActionPerformed(evt);
             }
         });
 
@@ -138,7 +146,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6))
-                    .addComponent(btnContinuar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnContinuar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jInd)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -174,7 +185,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnContinuar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnContinuar)
+                    .addComponent(jInd))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -241,6 +254,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnContinuarActionPerformed
 
+    private void jIndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIndActionPerformed
+        int opt = procesos.getRestaurante(cmbRes);
+        IndividualOrder ord = new IndividualOrder(opt);
+        
+        ord.setVisible(true);
+        this.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jIndActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,11 +301,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         cmbRes.setEnabled(false);
         btnContinuar.setEnabled(false);
         jButton4.setVisible(false);
+        jInd.setEnabled(false);
     }
     
     public void Inicio(){        
         cmbRes.setEnabled(true);
         btnContinuar.setEnabled(true);
+        jInd.setEnabled(true);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -293,6 +316,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbRes;
     private javax.swing.JButton ingresarBtn;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jInd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
