@@ -1,8 +1,10 @@
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -142,13 +144,171 @@ public class Procesos {
                 chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Brownie", "Lays Verdes", "Dorito Rojo", "Dorito Verde" }));
                 break;
             case 4:
-                //Picnic...
-                comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pan con Huevo", "Pan con Jamón", "Pan con Frijol", "Sopa" }));
-                bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Aloe Vera", "Mountain Dew", "Pepsi", "Mirinda" }));
+                //Snackers...
+                comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Chicken Nuggs", "Pan con Pollo", "Wrap", "Pizzadilla" }));
+                bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Coca Cola", "Petit Durazno", "Squiz", "Petit Piña" }));
                 chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Papas", "Dorito Verde", "Dorito Rojo", "Lays Verdes" }));
                 break;
         } 
         
+    }
+    
+    public int colocarPrecioComida(JComboBox comida, JSpinner comidaSpinner){
+        int precioC=0, precioTC=0;
+        int cantidad = (int) comidaSpinner.getValue();
+        
+        switch ((String) comida.getSelectedItem()){ 
+            case "iGO Indic":
+                precioC = 25;
+                break;
+            case "iGO Cesar":
+                precioC = 20;
+                break;
+            case "iGO Club":
+                precioC = 25;
+                break;
+            case "Ensalada":
+                precioC = 35;
+                break;
+            case "Pollo Cesar":
+                precioC = 30;
+                break;
+            case "Pavocado":
+                precioC = 30;
+                break;
+            case "Napoli":
+                precioC = 25;
+                break;
+            case "Grilled Cheese":
+                precioC = 20;
+                break;
+            case "Gitane Pollo":
+                precioC = 32;
+                break;
+            case "Quesadilla":
+                precioC = 25;
+                break;
+            case "Croissant":
+                precioC = 20;
+                break;
+            case "Hamburgesa":
+                precioC = 25;
+                break;
+            case "Chicken Nuggs":
+                precioC = 20;
+                break;
+            case "Pan con Pollo":
+                precioC = 20;
+                break;
+            case "Wrap":
+                precioC = 25;
+                break;
+            case "Pizzadilla":
+                precioC = 15;
+                break;
+        }
+        
+        precioTC = precioC*cantidad;
+        return precioTC;
+    }
+    
+    public int colocarPrecioChips(JComboBox chips, JSpinner chipsSpinner){
+        int precioC=0, precioTC=0;
+        int cantidad = (int) chipsSpinner.getValue();
+        
+        switch ((String) chips.getSelectedItem()){ 
+            case "Lays":
+                precioC = 5;
+                break;
+            case "Lays Verdes":
+                precioC = 6;
+                break;
+            case "Dorito Rojo":
+                precioC = 5;
+                break;
+            case "Dorito Verde":
+                precioC = 6;
+                break;
+            case "Brownie":
+                precioC = 8;
+                break;
+            case "Papas":
+                precioC = 10;
+                break;
+        }
+        
+        precioTC = precioC*cantidad;
+        return precioTC;
+    }
+    
+    public int colocarPrecioBebidas(JComboBox bebidas, JSpinner bebidasSpinner){
+        int precioB=0, precioTB=0;
+        int cantidad = (int) bebidasSpinner.getValue();
+        
+        switch ((String) bebidas.getSelectedItem()){ 
+            case "Pepsi Light":
+                precioB = 5;
+                break;
+            case "Limonada Piña":
+                precioB = 6;
+                break;
+            case "Agua Pura":
+                precioB = 4;
+                break;
+            case "Limonada Fresa":
+                precioB = 6;
+                break;
+            case "Pepsi":
+                precioB = 5;
+                break;
+            case "Mirinda":
+                precioB = 5;
+                break;
+            case "7 Up":
+                precioB = 5;
+                break;
+            case "Horchata":
+                precioB = 6;
+                break;
+            case "Naranjada":
+                precioB = 6;
+                break;
+            case "Jamaica":
+                precioB = 6;
+                break;
+            case "Limonada":
+                precioB = 6;
+                break;
+            case "Coca Cola":
+                precioB = 5;
+                break;
+            case "Petit Durazno":
+                precioB = 4;
+                break;
+            case "Squiz":
+                precioB = 4;
+                break;
+            case "Petit Piña":
+                precioB = 4;
+                break;
+                
+        }
+        
+        
+        precioTB = precioB * cantidad;
+        return precioTB;
+    }
+    
+    public int precioTotal(int precioC, int precioCh, int precioB){
+        int precioT=0;
+        precioT = precioC+precioCh+precioB;
+        return precioT;
+    }
+    
+    public void crearOrden(JLabel text, String comida, String chips, String bebida, int cCom, int cChi, int cBeb, String comment, Date fecha, String id, ArrayList<Orden> ordenes){
+        Orden ord = new Orden(comida, bebida, chips, comment, id, cCom, cBeb, cChi, fecha);
+        ordenes.add(ord);
+        text.setText(ord.toString());
     }
     
 }

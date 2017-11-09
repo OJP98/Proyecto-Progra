@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /*
@@ -13,7 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class CrearOrden_GUI extends javax.swing.JFrame {
     Procesos procesos = new Procesos();
+    private ArrayList<Orden> ordenes = new ArrayList<>(); 
     private int contadorOrdenes=0;
+    private int precioC, precioCh, precioB, precioT;
     public CrearOrden_GUI() {
         initComponents();
         bloquear();
@@ -77,12 +81,19 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
-        jAtras = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtCom = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel4.setText("Hora de entrega y pago:");
+
+        spnCord.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnCordStateChanged(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel5.setText("Menu:");
@@ -97,10 +108,25 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         jLabel8.setText("Bebida:");
 
         cmbComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cmbComida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbComidaActionPerformed(evt);
+            }
+        });
 
         cmbChips.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cmbChips.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbChipsActionPerformed(evt);
+            }
+        });
 
         cmbBebida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cmbBebida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbBebidaActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel9.setText("Total a pagar:");
@@ -115,6 +141,18 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        spnCord1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnCord1StateChanged(evt);
+            }
+        });
+
+        spnCord2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnCord2StateChanged(evt);
             }
         });
 
@@ -196,12 +234,9 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel20.setText("Crear Orden:");
 
-        jAtras.setText("Regresar");
-        jAtras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAtrasActionPerformed(evt);
-            }
-        });
+        txtCom.setColumns(20);
+        txtCom.setRows(5);
+        jScrollPane1.setViewportView(txtCom);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -217,34 +252,34 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel17)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblOrd2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblOrd2, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblOrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(lblOrd1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnElim1)
                                     .addComponent(btnElim)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel23)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblOrd5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel19)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblOrd4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblOrd5, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel21)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblOrd3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(222, 222, 222)
+                                        .addComponent(lblOrd3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblOrd4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnElim2)
                                     .addComponent(btnElim3)
@@ -260,18 +295,8 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(99, 99, 99)
                                         .addComponent(jButton1))))
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel16))
-                                .addGap(92, 92, 92)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel18)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(143, 143, 143)
+                                .addGap(262, 262, 262)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +329,21 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
                                     .addComponent(jLabel13))
                                 .addGap(39, 39, 39)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 12, Short.MAX_VALUE))))
+                        .addGap(0, 17, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel16))
+                                .addGap(92, 92, 92)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(22, 22, 22)
@@ -345,7 +384,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(lblOrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,19 +424,20 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel4)
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel18))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addComponent(jAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel18))
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -419,7 +459,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     
-    int cantComida = (int)spnCord.getValue();
+     /*int cantComida = (int)spnCord.getValue();
     int cantBebida = (int)spnCord1.getValue();
     int cantChips = (int)spnCord2.getValue();
         
@@ -429,7 +469,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
     
     //if ( ( (cmbComida.getSelectedIndex()!=0) || (cmbBebida.getSelectedIndex()!=0) || (cmbChips.getSelectedIndex()!=0) ) && (cantComida!=0 && cantBebida!=0 && cantChips !=0)) {
     
-    /*
+   
     if((!comida.equals("Sin opción")) || (cantComida != 0) || (!bebida.equals("Sin opción")) || (!chips.equals("Sin opción"))  || (cantBebida != 0) || (cantChips != 0)){  
         contadorOrdenes++;
         System.out.println("Orden agregada");
@@ -446,16 +486,91 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         
     }
     */
+     
+    if (precioT > 0){ 
+        String comida = (String) cmbComida.getSelectedItem();
+        String chips = (String) cmbChips.getSelectedItem();
+        String bebida = (String) cmbBebida.getSelectedItem();
+        int cCom = (int) spnCord.getValue();
+        int cChi = (int) spnCord1.getValue();
+        int cBeb = (int) spnCord2.getValue();
+        String comment = txtCom.getText();
+        Date fecha = (Date) jSpinner1.getValue();
+        
+        switch (contadorOrdenes){ 
+            case 0:
+                procesos.crearOrden(lblOrd1, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, "", ordenes);
+                contadorOrdenes++;
+                break;
+            case 1:
+                procesos.crearOrden(lblOrd2, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, "", ordenes);
+                contadorOrdenes++;
+                break;
+            case 2:
+                procesos.crearOrden(lblOrd4, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, "", ordenes);
+                contadorOrdenes++;
+                break;
+            case 3:
+                procesos.crearOrden(lblOrd3, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, "", ordenes);
+                contadorOrdenes++;
+                break;
+            case 4:
+                procesos.crearOrden(lblOrd5, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, "", ordenes);
+                contadorOrdenes++;
+                break;
+            
+        }
+       
+    }else{ 
+        JOptionPane.showMessageDialog(null, "Por favor agregue un item a su orden", "Error", JOptionPane.WARNING_MESSAGE);
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAtrasActionPerformed
-    PantallaPrincipal pp = new PantallaPrincipal();
-    
-    this.setVisible(false);
-    pp.setVisible(true);
-    // TODO add your handling code here:
-    }//GEN-LAST:event_jAtrasActionPerformed
+    private void cmbComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbComidaActionPerformed
+        // TODO add your handling code here:
+        precioC = procesos.colocarPrecioComida(cmbComida, spnCord);
+        precioT = procesos.precioTotal(precioC, precioCh, precioB);
+        lblPrec.setText(precioT+"");
+    }//GEN-LAST:event_cmbComidaActionPerformed
 
+    private void spnCordStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnCordStateChanged
+        // TODO add your handling code here:
+        precioC = procesos.colocarPrecioComida(cmbComida, spnCord);
+        precioT = procesos.precioTotal(precioC, precioCh, precioB);
+        lblPrec.setText(precioT+"");
+                                         
+    }//GEN-LAST:event_spnCordStateChanged
+
+    private void cmbChipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbChipsActionPerformed
+        // TODO add your handling code here:
+        precioCh = procesos.colocarPrecioChips(cmbChips, spnCord1);
+        precioT = procesos.precioTotal(precioC, precioCh, precioB);
+        lblPrec.setText(precioT+"");
+    }//GEN-LAST:event_cmbChipsActionPerformed
+
+    private void spnCord1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnCord1StateChanged
+        // TODO add your handling code here:
+        precioCh = procesos.colocarPrecioChips(cmbChips, spnCord1);
+        precioT = procesos.precioTotal(precioC, precioCh, precioB);
+        lblPrec.setText(precioT+"");
+    }//GEN-LAST:event_spnCord1StateChanged
+
+    private void cmbBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBebidaActionPerformed
+        // TODO add your handling code here:
+        precioB = procesos.colocarPrecioBebidas(cmbBebida, spnCord2);
+        precioT = procesos.precioTotal(precioC, precioCh, precioB);
+        lblPrec.setText(precioT+"");
+    }//GEN-LAST:event_cmbBebidaActionPerformed
+
+    private void spnCord2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnCord2StateChanged
+        // TODO add your handling code here:
+        precioB = procesos.colocarPrecioBebidas(cmbBebida, spnCord2);
+        precioT = procesos.precioTotal(precioC, precioCh, precioB);
+        lblPrec.setText(precioT+"");
+    }//GEN-LAST:event_spnCord2StateChanged
+
+    
+    
     public void bloquear(){
         jLabel4.setVisible(false);
         jLabel5.setVisible(false);
@@ -525,7 +640,6 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbBebida;
     private javax.swing.JComboBox<String> cmbChips;
     private javax.swing.JComboBox<String> cmbComida;
-    private javax.swing.JButton jAtras;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -548,6 +662,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblOrd1;
@@ -559,5 +674,6 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner spnCord;
     private javax.swing.JSpinner spnCord1;
     private javax.swing.JSpinner spnCord2;
+    private javax.swing.JTextArea txtCom;
     // End of variables declaration//GEN-END:variables
 }
