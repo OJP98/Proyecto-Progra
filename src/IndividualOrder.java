@@ -38,6 +38,7 @@ final int tarjetaNoJ = 16;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtTarjeta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -51,13 +52,20 @@ final int tarjetaNoJ = 16;
         jLabel6 = new javax.swing.JLabel();
         jAtras = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        txtTarjeta = new javax.swing.JTextField();
+        txtTarjet = new javax.swing.JTextField();
+
+        txtTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTarjetaActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel1.setText("Crear Orden Individual:");
 
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
         jLabel2.setText("Seleccione la hora de entrega:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -75,6 +83,7 @@ final int tarjetaNoJ = 16;
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel3.setText("Menu:");
 
+        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
         jButton1.setText("Siguiente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +100,7 @@ final int tarjetaNoJ = 16;
         jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel6.setText("Bebida:");
 
+        jAtras.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
         jAtras.setText("Atras");
         jAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,12 +110,6 @@ final int tarjetaNoJ = 16;
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel7.setText("Tarjeta de Credito:");
-
-        txtTarjeta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTarjetaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,20 +130,16 @@ final int tarjetaNoJ = 16;
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbFood, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
-                                .addGap(41, 41, 41))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jAtras, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(cbChips, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(cbChips, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)
-                                .addContainerGap(25, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,13 +148,18 @@ final int tarjetaNoJ = 16;
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3)
-                            .addComponent(txtTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel7)
+                            .addComponent(txtTarjet, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cbChips, cbDrink, cbFood});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jAtras, jButton1});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,12 +185,13 @@ final int tarjetaNoJ = 16;
                     .addComponent(jLabel6))
                 .addGap(27, 27, 27)
                 .addComponent(jLabel7)
-                .addGap(9, 9, 9)
-                .addComponent(txtTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jAtras)))
+                .addGap(18, 18, 18)
+                .addComponent(txtTarjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(jAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -205,13 +211,18 @@ final int tarjetaNoJ = 16;
     }//GEN-LAST:event_txtTarjetaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String largo = txtTarjeta.getText();
+         String largo = txtTarjet.getText();
         
          int no = largo.length();
          
-         if(no == tarjetaNoS || no == tarjetaNoJ){
+         if(no == tarjetaNoS || no == tarjetaNoJ || no == 21){
              
-             JOptionPane.showMessageDialog(null, "Su tarjeta ha sido aceptada");
+             JOptionPane.showMessageDialog(rootPane,"Su tarjeta ha sido aceptada.", "Success", HEIGHT);
+             
+         }
+         else 
+         {
+             JOptionPane.showMessageDialog(rootPane, "Su tarjeta no ha sido aceptada.", "Failure", HEIGHT);
              
          }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -265,6 +276,7 @@ final int tarjetaNoJ = 16;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField txtTarjet;
     private javax.swing.JTextField txtTarjeta;
     // End of variables declaration//GEN-END:variables
 }
