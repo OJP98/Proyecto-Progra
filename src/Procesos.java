@@ -1,12 +1,14 @@
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import org.mongodb.morphia.query.Query;
 
 /**
  * Se encarga de realizar los calculos que se deben utilizar mediante todo el programa
@@ -29,7 +31,7 @@ public class Procesos {
      * @param usuario: Almacena el nombre de usuario
      * @param contra: Almacena la contraseña del usuario
      */
-    public boolean Validar(String usuario, String contra) {
+    public boolean Validar(String usuario, String contra, ArrayList<Usuarios> usuariosCalc) {
         
         boolean cuentaE = false;
         boolean confirmar;
@@ -62,7 +64,7 @@ public class Procesos {
         
     }
     
-    public void agregarUsuario(String usuario, String contra){
+    public void agregarUsuario(String usuario, String contra, ArrayList<Usuarios> usuariosCalc){
         
         boolean exists = false;        
         
@@ -309,6 +311,37 @@ public class Procesos {
         Orden ord = new Orden(comida, bebida, chips, comment, id, cCom, cBeb, cChi, fecha);
         ordenes.add(ord);
         text.setText(ord.toString());
+    }
+    
+    public void eliminarOrden(ArrayList<Orden> ordenes){ 
+        
+    }
+    
+    public void salvarUsers(ArrayList<Usuarios> users){ 
+        Connection con = new Connection();
+        
+        for(Usuarios user: users){ 
+            con.ds.save(user);
+        }
+    }
+    
+    public void conseguirListaUsers(ArrayList<Usuarios> users){ 
+        try{
+          Connection con = new Connection();
+          
+            if (users.size() == 0){ 
+                Query<Usuarios> query = con.ds.createQuery(Usuarios.class);
+                List<Usuarios> usuarios = query.asList();
+                
+                usuarios.forEach((usera) -> {
+                    users.add(usera);
+                });
+            }
+            
+            
+        }catch(Exception e){ 
+            
+        }
     }
     
 }

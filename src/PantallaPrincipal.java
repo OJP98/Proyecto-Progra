@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /**
  * Clase mediante la cual el usuario inicial su pedido.
  * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
@@ -5,6 +8,7 @@
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     Procesos procesos = new Procesos();
+    ArrayList<Usuarios> users = new ArrayList<>();
     
     /**
      * Creates new form PantallaPrincipal
@@ -12,7 +16,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
         initComponents();
         Bloqueo();
-        
+        procesos.conseguirListaUsers(users);
+        System.out.println(users.size());
     }
 
     /**
@@ -190,7 +195,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         String usrn = userTF.getText();
         String pass = passTF.getText();
         
-        procesos.agregarUsuario(usrn, pass);
+        procesos.agregarUsuario(usrn, pass, users);
         
         userTF.setText("");
         passTF.setText("");
@@ -207,7 +212,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
        String usrn = userTF.getText();
        String pass = passTF.getText();
               
-       boolean validar = procesos.Validar(usrn, pass);
+       boolean validar = procesos.Validar(usrn, pass, users);
            
        if (validar == true) {
            
@@ -223,7 +228,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
        String usrn = userTF.getText();
        String pass = passTF.getText();
               
-       boolean validar = procesos.Validar(usrn, pass);
+       boolean validar = procesos.Validar(usrn, pass, users);
            
        if (validar == true) {
            
@@ -234,6 +239,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
+        procesos.salvarUsers(users);
         int opt = procesos.getRestaurante(cmbRes);
         CrearOrden_GUI ord = new CrearOrden_GUI(opt);
         

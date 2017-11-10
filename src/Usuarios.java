@@ -1,10 +1,17 @@
+
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+
 /**
  * Clase que crea usuarios para las personas que utilizaran el servicio
  * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
  */
+@Entity
 public class Usuarios {
 
 //Variables de instancia    
+@Id private ObjectId idu;
 private String usuario, clave;
     
     /**
@@ -17,6 +24,8 @@ private String usuario, clave;
         this.usuario = usuario;
         this.clave = clave;
     }
+    
+    public Usuarios(){}
     
     //Getters
 

@@ -192,6 +192,11 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
 
         btnElim.setBackground(new java.awt.Color(255, 51, 51));
         btnElim.setText("X");
+        btnElim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElimActionPerformed(evt);
+            }
+        });
 
         lblOrd2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
@@ -225,6 +230,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         jLabel18.setText("Ingrese su tarjeta de credito:");
 
         jButton3.setText("Hacer pedido");
+        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -451,6 +457,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         segundaParte();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -569,6 +576,10 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         lblPrec.setText(precioT+"");
     }//GEN-LAST:event_spnCord2StateChanged
 
+    private void btnElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnElimActionPerformed
+
     
     
     public void bloquear(){
@@ -595,6 +606,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         cmbComida.setEnabled(false);
         cmbBebida.setEnabled(false);
         cmbChips.setEnabled(false);
+        jButton3.setEnabled(true);
     }
     
     

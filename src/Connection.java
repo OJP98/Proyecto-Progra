@@ -22,7 +22,7 @@ public class Connection {
     public Connection(){
         MongoClient mongo = new MongoClient();
         Morphia morphia = new Morphia();
-        morphia.map(Orden.class);
+        morphia.map(Orden.class).map(Usuarios.class);
         ds = morphia.createDatastore(mongo, "ordenes");
     }
     
