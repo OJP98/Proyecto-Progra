@@ -18,13 +18,13 @@ import org.mongodb.morphia.annotations.Id;
 public class Orden {
     
     @Id private ObjectId ido; 
-    private String comida, bebida, chips, comentario, idOrden;
-    private int cComidal, cCbebida, cChips;
+    private String comida, bebida, chips, comentario;
+    private int cComidal, cCbebida, cChips, idOrden;
     private Date fecha;
     private boolean despachado;
     private double total;
 
-    public Orden(String comida, String bebida, String chips, String comentario, String idOrden, int cComidal, int cCbebida, int cChips, Date fecha) {
+    public Orden(String comida, String bebida, String chips, String comentario, int idOrden, int cComidal, int cCbebida, int cChips, Date fecha, double total) {
         this.comida = comida;
         this.bebida = bebida;
         this.chips = chips;
@@ -34,6 +34,7 @@ public class Orden {
         this.cCbebida = cCbebida;
         this.cChips = cChips;
         this.fecha = fecha;
+        this.total = total;
     }   
     
     public Orden(){}
@@ -54,7 +55,7 @@ public class Orden {
         return comentario;
     }
 
-    public String getIdOrden() {
+    public int getIdOrden() {
         return idOrden;
     }
 
@@ -88,7 +89,7 @@ public class Orden {
     
     @Override
     public String toString() {
-        return "Orden{" + "comida: " + comida + "cantidad: " + cComidal + "\nBebida: " + bebida + "cantidad: " + cCbebida + "\nChips: " + chips + "cantidad: " + cChips + '}';
+        return "Orden{" + " comida: " + comida +  "cantidad: " + cComidal + "\n Bebida: " + bebida + " cantidad: " + cCbebida + "\n Chips: " + chips + " cantidad: " + cChips + '}';
     }
     
     

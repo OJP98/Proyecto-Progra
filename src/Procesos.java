@@ -19,13 +19,36 @@ public class Procesos {
     
     private String user, pass;
     public static ArrayList<Usuarios> usuariosCalc = new ArrayList<>();
-    public int contador=1;
+    public int contador=1000;
     
     public Procesos(){
          
         String user = "", pass = "";    
     }
-
+    
+    public void getContador(){
+        Connection con = new Connection();
+        Query<Orden> query = con.ds.createQuery(Orden.class);
+        List<Orden> ordenes = query.asList();
+        
+        if (ordenes.size() != 0){
+        int nCont = ordenes.get(ordenes.size() - 1).getIdOrden();
+        
+        if (nCont != 1000){ 
+            contador = nCont;
+        }
+        }else{ 
+            contador = 1000;
+        }
+        
+        //Query<Integer> query = con.ds.
+        //contador = query.get();
+        
+        //contador = cont.get(0);
+    }
+    
+    
+    
     /**
      * Se encarga de observar si ya existe el usuario en la lista o no. Luego, permite ingresar al usuario al sistema.
      * @param usuario: Almacena el nombre de usuario
@@ -64,6 +87,12 @@ public class Procesos {
         
     }
     
+    /**
+     * Se encarga de agregar un usuario a la lista de usuarios
+     * @param usuario: el nombre del usuario
+     * @param contra: la contraseña del usuario
+     * @param usuariosCalc: la lista de usuarios
+     */
     public void agregarUsuario(String usuario, String contra, ArrayList<Usuarios> usuariosCalc){
         
         boolean exists = false;        
@@ -102,6 +131,11 @@ public class Procesos {
         
     }
     
+    /**
+     * Devuelve el numero de restaurante que eligió el usuario, por ejemplo el numero 0 es GoGreen
+     * @param restaurantesCbx: el combobox contenedor de las opciones de restaurantes
+     * @return opt: la opcion ed restaurante seleccionada
+     */
     public int getRestaurante(JComboBox restaurantesCbx){
         int opt = 0;
         
@@ -123,7 +157,13 @@ public class Procesos {
         return opt;
     }
     
-    
+    /**
+     * Muestra las opciones disponibles de un restaurante
+     * @param x: el restaurante elegido por el usuario
+     * @param comidaCbx: el combobox de platos fuertes
+     * @param bebidaCbx: el combobox de bebidas
+     * @param chipsCbx: el combobox de chips
+     */
     public void showOpts(int x, JComboBox comidaCbx, JComboBox bebidaCbx, JComboBox chipsCbx){
         
         switch (x){
@@ -155,6 +195,12 @@ public class Procesos {
         
     }
     
+    /**
+     * Retorna el precio que cuesta cada platillo
+     * @param comida: el combobox de platos fuertes
+     * @param comidaSpinner: el spinner con la cantidad de alimentos que se comprará
+     * @return precioTC: el precio del platillo
+     */
     public int colocarPrecioComida(JComboBox comida, JSpinner comidaSpinner){
         int precioC=0, precioTC=0;
         int cantidad = (int) comidaSpinner.getValue();
@@ -208,12 +254,21 @@ public class Procesos {
             case "Pizzadilla":
                 precioC = 15;
                 break;
+            case "Sin opción":
+                comidaSpinner.setValue(0);
+                break;
         }
         
         precioTC = precioC*cantidad;
         return precioTC;
     }
     
+    /**
+     * Retorna el precio que cuesta cada chip
+     * @param chips: el combobox de chips
+     * @param chipsSpinner: el spinner con la cantidad de chips que se comprará
+     * @return precioTC: el precio de los chips
+     */
     public int colocarPrecioChips(JComboBox chips, JSpinner chipsSpinner){
         int precioC=0, precioTC=0;
         int cantidad = (int) chipsSpinner.getValue();
@@ -237,12 +292,21 @@ public class Procesos {
             case "Papas":
                 precioC = 10;
                 break;
+            case "Sin opción":
+                chipsSpinner.setValue(0);
+                break;
         }
         
         precioTC = precioC*cantidad;
         return precioTC;
     }
     
+    /**
+     * Retorna el precio que cuesta cada bebida
+     * @param bebidas: el combobox de bebidas
+     * @param bebidasSpinner: el spinner con la cantidad de bebidas que se comprará
+     * @return precioTB: el precio de las bebidas
+     */
     public int colocarPrecioBebidas(JComboBox bebidas, JSpinner bebidasSpinner){
         int precioB=0, precioTB=0;
         int cantidad = (int) bebidasSpinner.getValue();
@@ -293,6 +357,9 @@ public class Procesos {
             case "Petit Piña":
                 precioB = 4;
                 break;
+            case "Sin opción":
+                bebidasSpinner.setValue(0);
+                break;
                 
         }
         
@@ -301,14 +368,35 @@ public class Procesos {
         return precioTB;
     }
     
+    /**
+     * Retorna un precio total, siendo esto lo que el usuario debe pagar
+     * @param precioC: el precio de la comida seleccionada
+     * @param precioCh: el precio de los chips seleccionada
+     * @param precioB: el precio de la bebida seleccionada
+     * @return precioT: el precio total
+     */
     public int precioTotal(int precioC, int precioCh, int precioB){
         int precioT=0;
         precioT = precioC+precioCh+precioB;
         return precioT;
     }
     
-    public void crearOrden(JLabel text, String comida, String chips, String bebida, int cCom, int cChi, int cBeb, String comment, Date fecha, String id, ArrayList<Orden> ordenes){
-        Orden ord = new Orden(comida, bebida, chips, comment, id, cCom, cBeb, cChi, fecha);
+    /**
+     * Crea un objeto de tipo orden
+     * @param text: el label donde se desplegarán los detalles de la orden
+     * @param comida: el alimento seleccionado
+     * @param chips: los chips seleccionados
+     * @param bebida: la bebida seleccionada
+     * @param cCom: la cantidad de alimentos
+     * @param cChi: la cantidad de chips
+     * @param cBeb: la cantidad de bebidas
+     * @param comment: un comentario, en caso que el usuario decida pedir su orden sin tomate, etc
+     * @param fecha: la fecha para la que se desea la orden
+     * @param id: el id de la orden
+     * @param ordenes: la lista de ordenes
+     */
+    public void crearOrden(JLabel text, String comida, String chips, String bebida, int cCom, int cChi, int cBeb, String comment, Date fecha, int id, double total, ArrayList<Orden> ordenes){
+        Orden ord = new Orden(comida, bebida, chips, comment, contador, cCom, cBeb, cChi, fecha, total);
         ordenes.add(ord);
         text.setText(ord.toString());
     }
@@ -317,6 +405,10 @@ public class Procesos {
         
     }
     
+    /**
+     * Salva los usuarios a la base de datos de MongoDB
+     * @param users: la lista de usuarios creada en el programa
+     */
     public void salvarUsers(ArrayList<Usuarios> users){ 
         Connection con = new Connection();
         
@@ -325,6 +417,10 @@ public class Procesos {
         }
     }
     
+    /**
+     * Cuando se inicia el programa, se consigue la lista de usuarios
+     * @param users: la lista a ser rellenada con los usuarios existentes
+     */
     public void conseguirListaUsers(ArrayList<Usuarios> users){ 
         try{
           Connection con = new Connection();
@@ -342,6 +438,36 @@ public class Procesos {
         }catch(Exception e){ 
             
         }
+    }
+    
+    public void conseguirListaOrdenes(ArrayList<Orden> ords){ 
+        try{
+          Connection con = new Connection();
+          
+            if (ords.size() == 0){ 
+                Query<Orden> query = con.ds.createQuery(Orden.class);
+                List<Orden> ordenes = query.asList();
+                
+                ordenes.forEach((orden) -> {
+                    ords.add(orden);
+                });
+            }
+            
+            
+        }catch(Exception e){ 
+            
+        }
+    }
+    
+    public void salvarOrd(ArrayList<Orden> ords){ 
+        Connection con = new Connection();
+        
+        for(Orden ord: ords){ 
+            con.ds.save(ord);
+        }
+        
+        con.ds.save(contador);
+        contador += 1;
     }
     
 }

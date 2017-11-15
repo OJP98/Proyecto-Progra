@@ -28,6 +28,8 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
     public CrearOrden_GUI(int opcion) {
         initComponents();
         procesos.showOpts(opcion, cmbComida, cmbBebida, cmbChips);
+        procesos.getContador();
+        bloquear();
     }
 
 
@@ -89,6 +91,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel4.setText("Hora de entrega y pago:");
 
+        spnCord.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         spnCord.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 spnCordStateChanged(evt);
@@ -144,12 +147,14 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
             }
         });
 
+        spnCord1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         spnCord1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 spnCord1StateChanged(evt);
             }
         });
 
+        spnCord2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         spnCord2.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 spnCord2StateChanged(evt);
@@ -462,6 +467,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        procesos.salvarOrd(ordenes);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -506,23 +512,23 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         
         switch (contadorOrdenes){ 
             case 0:
-                procesos.crearOrden(lblOrd1, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, "", ordenes);
+                procesos.crearOrden(lblOrd1, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, 0, precioT, ordenes);
                 contadorOrdenes++;
                 break;
             case 1:
-                procesos.crearOrden(lblOrd2, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, "", ordenes);
+                procesos.crearOrden(lblOrd2, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, 0, precioT, ordenes);
                 contadorOrdenes++;
                 break;
             case 2:
-                procesos.crearOrden(lblOrd4, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, "", ordenes);
+                procesos.crearOrden(lblOrd4, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, 0, precioT, ordenes);
                 contadorOrdenes++;
                 break;
             case 3:
-                procesos.crearOrden(lblOrd3, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, "", ordenes);
+                procesos.crearOrden(lblOrd3, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, 0, precioT, ordenes);
                 contadorOrdenes++;
                 break;
             case 4:
-                procesos.crearOrden(lblOrd5, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, "", ordenes);
+                procesos.crearOrden(lblOrd5, comida, chips, bebida, cCom, cChi, cBeb, comment, fecha, 0, precioT, ordenes);
                 contadorOrdenes++;
                 break;
             

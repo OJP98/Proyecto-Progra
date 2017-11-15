@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class Factura_GUI extends javax.swing.JFrame {
     
-    private String nOrden;
+    private int nOrden;
     private Date hora;
     private double total;
     
@@ -184,7 +184,7 @@ public class Factura_GUI extends javax.swing.JFrame {
         
         for (Orden x: ordenesFactura) {
             
-            if (x.getIdOrden().equals(nOrden)) {
+            if (x.getIdOrden() == nOrden) {
                 
                contador++;
                
