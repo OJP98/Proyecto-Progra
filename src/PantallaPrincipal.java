@@ -17,7 +17,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         initComponents();
         Bloqueo();
         procesos.conseguirListaUsers(users);
-        System.out.println(users.size());
     }
 
     /**

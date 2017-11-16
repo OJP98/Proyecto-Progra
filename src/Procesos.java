@@ -31,12 +31,9 @@ public class Procesos {
         Query<Orden> query = con.ds.createQuery(Orden.class);
         List<Orden> ordenes = query.asList();
         
-        if (ordenes.size() != 0){
-        int nCont = ordenes.get(ordenes.size() - 1).getIdOrden();
-        
-        if (nCont != 1000){ 
-            contador = nCont;
-        }
+        if (ordenes.isEmpty() == false){
+            int nCont = ordenes.get(ordenes.size() - 1).getIdOrden();
+            contador = nCont+1;
         }else{ 
             contador = 1000;
         }
@@ -46,8 +43,6 @@ public class Procesos {
         
         //contador = cont.get(0);
     }
-    
-    
     
     /**
      * Se encarga de observar si ya existe el usuario en la lista o no. Luego, permite ingresar al usuario al sistema.
@@ -466,8 +461,53 @@ public class Procesos {
             con.ds.save(ord);
         }
         
-        con.ds.save(contador);
-        contador += 1;
+
+    }
+    
+    public void encontrarOrdenes(ArrayList<Orden> ords, int id, JLabel lbl1, JLabel lbl2, JLabel lbl3, JLabel lbl4, JLabel lbl5, JLabel precio){ 
+        Orden ordenes[] = new Orden[5];
+        int contador=0;
+        float precioT=0;
+        
+        for(Orden ord: ords){ 
+            if(ord.getIdOrden() == id){ 
+                if(contador<5){
+                  ordenes[contador] = ord;
+                  contador++;  
+                }else{ 
+                    break;
+                }
+            }
+        }
+           
+        if(ordenes[0] != null){ 
+            lbl1.setText(ordenes[0].toString());
+        }
+        if(ordenes[1] != null){ 
+            lbl2.setText(ordenes[1].toString());
+        }
+        if(ordenes[2] != null){ 
+            lbl3.setText(ordenes[2].toString());
+        }
+        if(ordenes[3] != null){ 
+            lbl4.setText(ordenes[3].toString());
+        }
+        if(ordenes[4] != null){ 
+            lbl5.setText(ordenes[4].toString());
+        }
+        
+        for (int i = 0; i < ordenes.length; i++) {
+            if(ordenes[i] != null){ 
+               precioT += ordenes[i].getTotal();
+            }
+        }
+        
+        precio.setText(precioT+"");
+        
+    }
+    
+    public void precioT(){ 
+        
     }
     
 }
