@@ -601,6 +601,20 @@ public class Procesos {
                 
             }            
         }        
-    }    
+    }
+
+
+    public void eliminarOrden(ArrayList<Orden> lista, int idOrden){ 
+        Orden ord;
+        
+        for (Orden x: lista) {
+            
+            if (idOrden == x.getIdOrden()) {
+                
+                
+                
+            }            
+        } 
+    }
 }
 
