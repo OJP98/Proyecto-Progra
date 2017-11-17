@@ -439,6 +439,10 @@ public class Procesos {
         }
     }
     
+    /**
+     * Consigue las ordenes que están en la base de datos
+     * @param ords: la lista de ordenes a ser llenada
+     */
     public void conseguirListaOrdenes(ArrayList<Orden> ords){ 
         try{
           Connection con = new Connection();
@@ -458,6 +462,10 @@ public class Procesos {
         }
     }
     
+    /**
+     * Salva ordenes creadas por los usuarios en la base de datos
+     * @param ords: la lista de ordenes por salvar
+     */
     public void salvarOrd(ArrayList<Orden> ords){ 
         Connection con = new Connection();
         
@@ -468,6 +476,17 @@ public class Procesos {
 
     }
     
+    /**
+     * Coloca las ordenes creadas por el usuario en la factura
+     * @param ords: la lista de ordenes por los usuarios
+     * @param id: el id de la orden
+     * @param lbl1: el primer label de ordenes
+     * @param lbl2: el segundo label de ordenes
+     * @param lbl3: el tercer label de ordenes
+     * @param lbl4: el cuarto label de ordenes
+     * @param lbl5: el quinto label de ordenes
+     * @param precio: el label donde se colocará el precio total
+     */
     public void encontrarOrdenes(ArrayList<Orden> ords, int id, JLabel lbl1, JLabel lbl2, JLabel lbl3, JLabel lbl4, JLabel lbl5, JLabel precio){ 
         Orden ordenes[] = new Orden[5];
         int contador=0;
@@ -540,6 +559,14 @@ public class Procesos {
         return confirmar;
     }
     
+    /**
+     * Filtra las ordenes dependiendo del día de despacho y el restaurante
+     * @param lista: la lista de ordenes
+     * @param comboBox: el combobox donde se agregarán los ids
+     * @param restaurante: el numero de restaurante seleccionado
+     * @param dia: el día en el que se debe despachar la orden
+     * @param texto: el area de texto donde se desplegará la información importante de las ordenes
+     */
     public void filtarOrdenes(ArrayList<Orden> lista, JComboBox comboBox, int restaurante, int dia, JTextArea texto){
                 
         comboBox.removeAllItems();            
@@ -559,6 +586,11 @@ public class Procesos {
         }
     }
 
+    /**
+     * Despacha una orden creada por el usuario, puede despachar una orden o las 5 ordenes.
+     * @param lista: la lista de ordenes creadas
+     * @param idOrden: el id de la orden que se desea despachar
+     */
     public void despacharOrden(ArrayList<Orden> lista, int idOrden){
         
         for (Orden x: lista) {

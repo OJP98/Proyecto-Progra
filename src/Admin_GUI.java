@@ -45,7 +45,7 @@ public class Admin_GUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel2.setText("Seleccione el restaurante a gestionar:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Go Green" , "Gitanne" , "Bagek Bros" , "Snackers" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Go Green" , "Gitanne" , "Bagel Bros" , "Snackers" }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes" , "Martes" , "Miercoles" , "Jueves" , "Viernes" , "Sabado"}));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -57,6 +57,7 @@ public class Admin_GUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel3.setText("Seleccione el día:");
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
