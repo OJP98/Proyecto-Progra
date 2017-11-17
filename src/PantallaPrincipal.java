@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  * Clase mediante la cual el usuario inicial su pedido.
@@ -226,14 +227,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
        
        String usrn = userTF.getText();
        String pass = passTF.getText();
-              
-       boolean validar = procesos.Validar(usrn, pass, users);
+                                
+       boolean admin = procesos.validarAdmin(usrn, pass);
+       
+       if (admin)  {
            
-       if (validar == true) {
+           Admin_GUI pantallaAdmin = new Admin_GUI();
+           pantallaAdmin.setVisible(true);
+           this.setVisible(false);           
            
-           Inicio();
+       } else {
            
-       } 
+           JOptionPane.showMessageDialog(this, "Usted no es personal de la tienda");
+           
+       }
     }//GEN-LAST:event_adminBtnActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed

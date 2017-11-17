@@ -19,12 +19,12 @@ public class Orden {
     
     @Id private ObjectId ido; 
     private String comida, bebida, chips, comentario;
-    private int cComidal, cCbebida, cChips, idOrden;
+    private int cComidal, cCbebida, cChips, idOrden, restaurante;
     private Date fecha;
     private boolean despachado;
     private double total;
 
-    public Orden(String comida, String bebida, String chips, String comentario, int idOrden, int cComidal, int cCbebida, int cChips, Date fecha, double total) {
+    public Orden(String comida, String bebida, String chips, String comentario, int idOrden, int cComidal, int cCbebida, int cChips, Date fecha, double total, int restaurante) {
         this.comida = comida;
         this.bebida = bebida;
         this.chips = chips;
@@ -85,6 +85,18 @@ public class Orden {
 
     public double getTotal() {
         return total;
+    }
+    
+    public int getRestaurante(){
+        return restaurante;
+    }      
+    
+    public boolean getDespachado(){
+        return despachado;
+    }
+    
+    public String imprimirOrden(){
+        return "ID: " + idOrden + " Fecha de entrega: " + fecha + "\nComida: " + comida + " - Cantidad: " + cComidal + "\nBebida: " + bebida + " - Cantidad: " + cCbebida + "\nChips: " + chips + " - Cantidad: " + cChips + "\n"; 
     }
     
     @Override

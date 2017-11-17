@@ -390,8 +390,8 @@ public class Procesos {
      * @param id: el id de la orden
      * @param ordenes: la lista de ordenes
      */
-    public void crearOrden(JLabel text, String comida, String chips, String bebida, int cCom, int cChi, int cBeb, String comment, Date fecha, int id, double total, ArrayList<Orden> ordenes){
-        Orden ord = new Orden(comida, bebida, chips, comment, contador, cCom, cBeb, cChi, fecha, total);
+    public void crearOrden(JLabel text, String comida, String chips, String bebida, int cCom, int cChi, int cBeb, String comment, Date fecha, int id, double total, ArrayList<Orden> ordenes, int restaurante){
+        Orden ord = new Orden(comida, bebida, chips, comment, contador, cCom, cBeb, cChi, fecha, total, restaurante);
         ordenes.add(ord);
         text.setText(ord.toString());
     }
@@ -508,6 +508,103 @@ public class Procesos {
     
     public void precioT(){ 
         
+    }
+    
+    /**
+     * Valida si la información ingresada por el usuario pertenece a la del administrador.
+     * @param usuario: Almacena el usuario en el textbox de login
+     * @param contra: Almacena la clave en el textbox de login
+     * @return confirmar: Booleano si el usuario es administrador o no
+     */
+    public boolean validarAdmin(String usuario, String contra){
+        
+        boolean confirmar = false;
+        PantallaPrincipal entrar = new PantallaPrincipal();
+        
+        if (usuario.equals("admin") && contra.equals("admin")) {
+            
+            confirmar = true;
+            JOptionPane.showMessageDialog(entrar, "Bienvenido administrador!", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                        
+        } else {
+            
+            confirmar = false;
+            
+        }
+        
+        
+        return confirmar;
+    }
+    
+    
+    /**
+     * Despliega todas las ordenes en un TextArea
+     * @param lista: Es la lista de las ordenes por el usuario
+     * @param comboBox: Es el combobox donde se colocaran las ordenes
+     * @param restaurante: Es la opcion de restaurantes elegidos
+     * @param texto: TextArea donde se colocara la cadena de texto
+     */
+    public void verProductos(ArrayList<Orden> lista, JComboBox comboBox, int posicion, JTextArea texto, int dia){
+                
+        comboBox.removeAllItems();
+        texto.setText("No hay ordenes por el momento");
+        String cadena="";
+        
+        for(Orden x:lista){
+            
+            if ((posicion==1) && (x.getRestaurante()==1)){
+                    
+                if (x.getDespachado()==false) {
+                    
+                    comboBox.addItem(x.getIdOrden());
+                    
+                }
+                
+                cadena = x.imprimirOrden();
+                                
+                texto.setText(cadena);
+                
+            } else if ((posicion==2) && (x.getRestaurante()==2)) {
+                
+                if (x.getDespachado()==false) {
+                    
+                    comboBox.addItem(x.getIdOrden());
+                    
+                }
+                            
+                 cadena = x.imprimirOrden();
+                
+                texto.setText(cadena);
+                
+            } else if ((posicion==3) && (x.getRestaurante()==3)) {
+                
+                if (x.getDespachado()==false) {
+                    
+                    comboBox.addItem(x.getIdOrden());
+                    
+                }
+                
+                
+                cadena = x.imprimirOrden();
+                
+                
+                texto.setText(cadena);
+                
+            } else if ((posicion==4) && (x.getRestaurante()==4)) {
+                
+                if (x.getDespachado()==false) {
+                    
+                    comboBox.addItem(x.getIdOrden());
+                    
+                }
+                 cadena = x.imprimirOrden();
+                
+                
+                texto.setText(cadena);
+                
+            }    
+        
+        }
     }
     
 }
