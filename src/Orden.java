@@ -4,15 +4,10 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Usuario
+ * Clase que crea objetos de tipo Orden, estas almacenan detalles importantes de las ordenes de los usuarios
+ * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
+ * @version 17.11.17
  */
 @Entity
 public class Orden {

@@ -1,15 +1,11 @@
 
 import java.util.ArrayList;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author MIGUEL
+ * Clase mediante la cual el usuario puede observar un resumen de su orden
+ * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
+ * @version 17.11.17
  */
 public class FacturaT_GUI extends javax.swing.JFrame {
     private int id=0;

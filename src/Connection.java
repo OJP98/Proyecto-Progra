@@ -3,15 +3,11 @@ import com.mongodb.MongoClient;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author MIGUEL
+ * Clase mediante la cual el programa puede establecer una conexión con MongoDB
+ * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
+ * @version 17.11.17
  */
 public class Connection {
      Datastore ds;

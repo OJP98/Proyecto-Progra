@@ -2,6 +2,12 @@
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+/**
+ * Clase mediante la cual el administrador puede observar las ordenes ingresadas por el usuario 
+ * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
+ * @version 17.11.17
+ */
+
 public class Admin_GUI extends javax.swing.JFrame {
     
     ArrayList<Orden> listaAdmin = new ArrayList<Orden>();

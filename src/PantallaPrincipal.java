@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- * Clase mediante la cual el usuario inicial su pedido.
+ * Clase mediante la cual el usuario inicial logra registrarse/ingresar al sistema.
  * @author Rodrigo Zea, Oscar Juárez, Andrés Quan
+ * @version 17.11.17
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
