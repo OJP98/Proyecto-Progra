@@ -35,6 +35,7 @@ public class Orden {
         this.cChips = cChips;
         this.fecha = fecha;
         this.total = total;
+        this.restaurante = restaurante;
     }   
     
     public Orden(){}
@@ -91,19 +92,30 @@ public class Orden {
         return restaurante;
     }      
     
-    public boolean getDespachado(){
-        return despachado;
-    }
+    public int getDia(){
+        return fecha.getDay();
+    }    
     
     public String imprimirOrden(){
-        return "ID: " + idOrden + " Fecha de entrega: " + fecha + "\nComida: " + comida + " - Cantidad: " + cComidal + "\nBebida: " + bebida + " - Cantidad: " + cCbebida + "\nChips: " + chips + " - Cantidad: " + cChips + "\n"; 
+        
+        String cadena = "";
+        
+        if (despachado==false){
+            
+            cadena = "ID: " + idOrden + "- Fecha de entrega: " + fecha + "\nComida: " + comida + " - Cantidad: " + cComidal + "\nBebida: " + bebida + " - Cantidad: " + cCbebida + "\nChips: " + chips + " - Cantidad: " + cChips + "Total a pagar: Q" + total + "\nDespachado: No" + "\n\nComentario: " + comentario + "\n"; 
+            
+        } else {
+            
+            cadena = "ID: " + idOrden + "- Fecha de entrega: " + fecha + "\nComida: " + comida + " - Cantidad: " + cComidal + "\nBebida: " + bebida + " - Cantidad: " + cCbebida + "\nChips: " + chips + " - Cantidad: " + cChips + "\nDespachado: Sí\n"; 
+        }
+        
+        return cadena;
     }
     
     @Override
     public String toString() {
-        return "Orden{" + " comida: " + comida +  " cantidad: " + cComidal + "\n Bebida: " + bebida + " cantidad: " + cCbebida + "\n Chips: " + chips + " cantidad: " + cChips + '}';
+        return "Orden: Comida: " + comida +  " - cantidad: " + cComidal + "; Bebida: " + bebida + " - cantidad: " + cCbebida + " Chips: " + chips + " - cantidad: " + cChips + "; Fecha y hora de entrega: " + fecha + " / Total: Q" + total;
     }
-    
-    
+        
         
 }

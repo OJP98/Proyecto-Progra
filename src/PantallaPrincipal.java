@@ -246,7 +246,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
         procesos.salvarUsers(users);
-        int opt = procesos.getRestaurante(cmbRes);
+        int opt = cmbRes.getSelectedIndex()+1;        
         CrearOrden_GUI ord = new CrearOrden_GUI(opt);
         
         ord.setVisible(true);

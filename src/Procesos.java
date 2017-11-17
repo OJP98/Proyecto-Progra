@@ -1,7 +1,9 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,7 +20,7 @@ import org.mongodb.morphia.query.Query;
 public class Procesos {
     
     private String user, pass;
-    public static ArrayList<Usuarios> usuariosCalc = new ArrayList<>();
+    public static ArrayList<Usuarios> usuariosCalc = new ArrayList<>();    
     public int contador=1000;
     
     public Procesos(){
@@ -168,13 +170,13 @@ public class Procesos {
                 bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pepsi Light", "Limonada Piña", "Agua Pura", "Limonada Fresa" }));
                 chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Lays", "Lays Verdes", "Dorito Rojo", "Dorito Verde" }));
                 break;
-            case 2:
+            case 3:
                 //Bagel Bros...
                 comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pollo Cesar", "Pavocado", "Napoli", "Grilled Cheese" }));
                 bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Pepsi", "Mirinda", "Agua Pura", "7 Up" }));
                 chipsCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Lays", "Lays Verdes", "Dorito Rojo", "Dorito Verde" }));
                 break;
-            case 3:
+            case 2:
                 //Café Gitane...
                 comidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Gitane Pollo", "Quesadilla", "Croissant", "Hamburgesa" }));
                 bebidaCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin opción" , "Horchata", "Naranjada", "Jamaica", "Limonada" }));
@@ -391,9 +393,11 @@ public class Procesos {
      * @param ordenes: la lista de ordenes
      */
     public void crearOrden(JLabel text, String comida, String chips, String bebida, int cCom, int cChi, int cBeb, String comment, Date fecha, int id, double total, ArrayList<Orden> ordenes, int restaurante){
-        Orden ord = new Orden(comida, bebida, chips, comment, contador, cCom, cBeb, cChi, fecha, total, restaurante);
-        ordenes.add(ord);
-        text.setText(ord.toString());
+
+            Orden ord = new Orden(comida, bebida, chips, comment, contador, cCom, cBeb, cChi, fecha, total, restaurante);
+            ordenes.add(ord);
+            text.setText(ord.toString());
+        
     }
     
     public void eliminarOrden(ArrayList<Orden> ordenes){ 
@@ -536,76 +540,35 @@ public class Procesos {
         return confirmar;
     }
     
-    
-    /**
-     * Despliega todas las ordenes en un TextArea
-     * @param lista: Es la lista de las ordenes por el usuario
-     * @param comboBox: Es el combobox donde se colocaran las ordenes
-     * @param restaurante: Es la opcion de restaurantes elegidos
-     * @param texto: TextArea donde se colocara la cadena de texto
-     */
-    public void verProductos(ArrayList<Orden> lista, JComboBox comboBox, int posicion, JTextArea texto, int dia){
+    public void filtarOrdenes(ArrayList<Orden> lista, JComboBox comboBox, int restaurante, int dia, JTextArea texto){
                 
-        comboBox.removeAllItems();
-        texto.setText("No hay ordenes por el momento");
-        String cadena="";
+        comboBox.removeAllItems();            
+             
+        List<Orden> listaFiltrada = lista.stream().filter(x -> x.getDia()==dia && x.getRestaurante()==restaurante).collect(Collectors.toList());                     
         
-        for(Orden x:lista){
+        for (Orden x: listaFiltrada) {
             
-            if ((posicion==1) && (x.getRestaurante()==1)){
-                    
-                if (x.getDespachado()==false) {
-                    
-                    comboBox.addItem(x.getIdOrden());
-                    
-                }
+            if (x.isDespachado()==false){
                 
-                cadena = x.imprimirOrden();
-                                
-                texto.setText(cadena);
+                comboBox.addItem(x.getIdOrden());
                 
-            } else if ((posicion==2) && (x.getRestaurante()==2)) {
-                
-                if (x.getDespachado()==false) {
-                    
-                    comboBox.addItem(x.getIdOrden());
-                    
-                }
-                            
-                 cadena = x.imprimirOrden();
-                
-                texto.setText(cadena);
-                
-            } else if ((posicion==3) && (x.getRestaurante()==3)) {
-                
-                if (x.getDespachado()==false) {
-                    
-                    comboBox.addItem(x.getIdOrden());
-                    
-                }
-                
-                
-                cadena = x.imprimirOrden();
-                
-                
-                texto.setText(cadena);
-                
-            } else if ((posicion==4) && (x.getRestaurante()==4)) {
-                
-                if (x.getDespachado()==false) {
-                    
-                    comboBox.addItem(x.getIdOrden());
-                    
-                }
-                 cadena = x.imprimirOrden();
-                
-                
-                texto.setText(cadena);
-                
-            }    
-        
+            }
+            
+            texto.setText(x.imprimirOrden());            
+            
         }
     }
-    
+
+    public void despacharOrden(ArrayList<Orden> lista, int idOrden){
+        
+        for (Orden x: lista) {
+            
+            if (idOrden == x.getIdOrden()) {
+                
+                x.setDespachado(true);
+                
+            }            
+        }        
+    }    
 }
 
