@@ -428,7 +428,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+                            
         if(jTextField1.getText().equals(" ") == false){ 
            procesos.salvarOrd(ordenes);
             FacturaT_GUI factura = new FacturaT_GUI(procesos.contador);
@@ -443,9 +443,22 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                       
+                             
+        
         //Fecha del spinner
         Date fecha = (Date) jSpinner1.getValue();
+        
+        int horas = fecha.getHours();
+        int minutos = fecha.getMinutes();
+        
+        int totalM = (horas*60)+minutos;
+        
+        int horas2 = new Date().getHours();
+        int minutos2 = new Date().getMinutes();
+        
+        int totalM2 = (horas2*60)+minutos2;
+        
+        int resta = Math.abs(totalM2-totalM);
         
         //Fecha definida a partir de una semana
         Calendar calendar = Calendar.getInstance();
@@ -454,10 +467,34 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
         Date semana = calendar.getTime();                
 
 
-         System.out.println(fecha.getMinutes());
-         System.out.println(new Date().getMinutes()+14);
+         System.out.println(totalM+"");
+         System.out.println(totalM2+"");
         
-    if (precioT > 0 && fecha.after(new Date()) ){ 
+    if (fecha.before(new Date()) ) {
+        
+        JOptionPane.showMessageDialog(null, "La fecha ingresada no es válida", "Error", JOptionPane.WARNING_MESSAGE);
+       
+    } else if (fecha.after(semana)){
+        
+        JOptionPane.showMessageDialog(null, "Dispone de menos de una semana para hacer una reserva", "Error", JOptionPane.WARNING_MESSAGE);
+        
+    } else if (fecha.getDay() == 0){
+        
+        JOptionPane.showMessageDialog(null, "No puede realizar una orden el día Domingo", "Error", JOptionPane.WARNING_MESSAGE);
+        
+    } else if (fecha.getHours() < 7 || fecha.getHours() > 12){
+        
+        JOptionPane.showMessageDialog(null, "El restaurante se encuentra cerrado a esta hora", "Error", JOptionPane.WARNING_MESSAGE);
+        
+    }else if (precioT==0){ 
+        
+        JOptionPane.showMessageDialog(null, "Por favor agregue un item a su orden", "Error", JOptionPane.WARNING_MESSAGE);
+        
+    } else if (fecha.getDay() == new Date().getDay() && resta<15){       
+    
+            JOptionPane.showMessageDialog(null, "Se necesitan minimo 15 minutos para reservar la orden", "Error", JOptionPane.WARNING_MESSAGE);  
+        
+    } else {
         
         String comida = (String) cmbComida.getSelectedItem();
         String chips = (String) cmbChips.getSelectedItem();
@@ -502,26 +539,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
             case 5:
                 JOptionPane.showMessageDialog(this, "Solo puede crear 5 ordendes con el mismo ID");                
             
-        }
-        
-    } else if (fecha.before(new Date()) ) {
-        
-        JOptionPane.showMessageDialog(null, "La fecha ingresada no es válida", "Error", JOptionPane.WARNING_MESSAGE);
-       
-    } else if (fecha.getMinutes() < new Date().getMinutes()+14){
-        
-        JOptionPane.showMessageDialog(null, "Se necesitan minimo 15 minutos para reservar la orden", "Error", JOptionPane.WARNING_MESSAGE);
-        
-    } else if (fecha.getDay() == 0){
-        
-        JOptionPane.showMessageDialog(null, "No puede realizar una orden el día Domingo", "Error", JOptionPane.WARNING_MESSAGE);
-        
-    } else if (fecha.getHours() > 7 && fecha.getHours() < 12){
-        
-        JOptionPane.showMessageDialog(null, "El restaurante se encuentra cerrado a esta hora", "Error", JOptionPane.WARNING_MESSAGE);
-        
-    }else{ 
-        JOptionPane.showMessageDialog(null, "Por favor agregue un item a su orden", "Error", JOptionPane.WARNING_MESSAGE);
+        }        
     }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -571,7 +589,7 @@ public class CrearOrden_GUI extends javax.swing.JFrame {
     private void btnElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimActionPerformed
         int decision = JOptionPane.showConfirmDialog(this, "Esta seguro que desea eliminar todas  las ordenes?", "Aviso", JOptionPane.YES_NO_OPTION);        
         
-        if (true) {
+        if (decision==0) {
             
             procesos.eliminarOrden(ordenes, procesos.contador);
             lblOrd1.setText("");
