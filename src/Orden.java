@@ -109,7 +109,7 @@ public class Orden {
     
     @Override
     public String toString() {
-        return "Orden: Comida: " + comida +  " - cantidad: " + cComidal + "; Bebida: " + bebida + " - cantidad: " + cCbebida + " Chips: " + chips + " - cantidad: " + cChips + "; Fecha y hora de entrega: " + fecha + " / Total: Q" + total;
+        return "Orden: Comida: " + comida +  " - cantidad: " + cComidal + "; Bebida: " + bebida + " - cantidad: " + cCbebida + " Chips: " + chips + " - cantidad: " + cChips + "; Fecha y hora de entrega: " + fecha + " / Total: Q" + total + "\n";
     }
         
         

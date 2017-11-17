@@ -396,7 +396,7 @@ public class Procesos {
     public void crearOrden(JLabel text, String comida, String chips, String bebida, int cCom, int cChi, int cBeb, String comment, Date fecha, int id, double total, ArrayList<Orden> ordenes, int restaurante){
 
             Orden ord = new Orden(comida, bebida, chips, comment, contador, cCom, cBeb, cChi, fecha, total, restaurante);
-            ordenes.add(ord);
+            //ordenes.add(ord);
             text.setText(ord.toString());
         
     }
@@ -570,7 +570,8 @@ public class Procesos {
      */
     public void filtarOrdenes(ArrayList<Orden> lista, JComboBox comboBox, int restaurante, int dia, JTextArea texto){
                 
-        comboBox.removeAllItems();            
+        comboBox.removeAllItems();          
+        texto.setText("");
              
         List<Orden> listaFiltrada = lista.stream().filter(x -> x.getDia()==dia && x.getRestaurante()==restaurante).collect(Collectors.toList());                     
         
@@ -582,7 +583,7 @@ public class Procesos {
                 
             }
             
-            texto.setText(x.imprimirOrden());            
+            texto.setText(texto.getText() + x.imprimirOrden());            
             
         }
     }
@@ -605,6 +606,11 @@ public class Procesos {
     }
 
 
+    /**
+     * Elimina las ordenes que ha agregado el usuario
+     * @param lista: La lista de las ordenes existente
+     * @param idOrden: El ID de la orden que se quiere registrar
+     */
     public void eliminarOrden(ArrayList<Orden> lista, int idOrden){         
         
         for (Iterator<Orden> it = lista.iterator(); it.hasNext(); ) {
