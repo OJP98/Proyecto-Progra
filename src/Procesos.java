@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JComboBox;
@@ -604,17 +605,16 @@ public class Procesos {
     }
 
 
-    public void eliminarOrden(ArrayList<Orden> lista, int idOrden){ 
-        Orden ord;
+    public void eliminarOrden(ArrayList<Orden> lista, int idOrden){         
         
-        for (Orden x: lista) {
-            
-            if (idOrden == x.getIdOrden()) {
-                
-                
-                
-            }            
-        } 
-    }
+        for (Iterator<Orden> it = lista.iterator(); it.hasNext(); ) {
+            Orden ord = it.next();
+            if (ord.getIdOrden()==idOrden) {
+                it.remove();
+        }
+}          
+         
+    }        
+    
 }
 

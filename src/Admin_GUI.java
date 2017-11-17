@@ -149,7 +149,9 @@ public class Admin_GUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         PantallaPrincipal pantallaP = new PantallaPrincipal();
         pantallaP.setVisible(true);
-        this.setVisible(false);
+        this.setVisible(false);        
+        
+        procesos.salvarOrd(listaAdmin);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
